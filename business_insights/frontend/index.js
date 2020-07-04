@@ -59,18 +59,20 @@ function TodoBlock() {
         return <Transaction key={record.id} record={record}  config={globalConfig}/>;
     }) : null;
 
+    const backIcon = <svg focusable="false" style={{'margin-right':'8px'}} preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><path d="M13 26L14.41 24.59 6.83 17 29 17 29 15 6.83 15 14.41 7.41 13 6 3 16 13 26z"></path><title>Arrow left</title></svg>
+
     if ( detailsMode === true) {
        return  <div>
            <TablePickerSynced globalConfigKey="selectedTableId" />
         {customers}</div>;
     } else {
-        return  <div>
+        return  <div style={{'margin':'32px'}}>
                     <button
                         style={{'float': 'right',
-                            'margin-right': '20px',
-                            'background-color': '#4CAF50',
+                            'fontFamily' : '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif',
+                            'background-color': 'transparent',
                             'border': 'none',
-                            'color': 'white',
+                            'color': '#4669db',
                             'padding': '15px 32px',
                             'text-align': 'center',
                             'text-decoration': 'none',
@@ -81,7 +83,10 @@ function TodoBlock() {
                             globalConfig.setAsync('detailsMode', true);
                         }}
                     >
-                    Back 
+                        <div style={{'display':' inline-flex', 'align-items': 'center'}}>
+                            {backIcon}
+                            Back 
+                        </div>
                     </button>
                    <h1> {customerRecord.getCellValue('CustomerName')} </h1>
                    <h2>Recent Transactions</h2>
@@ -110,12 +115,17 @@ function Customer({record, config}) {
              'marginBottom': '10px',
              'marginLeft' : '20px',
              'marginRight' : '20px',
-             'backgroundColor': '#fff',
              'fontFamily' : '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif',
              'color' : '#171717',
              'border': '1px solid rgba(0,0,0,.125)',
+             ...(!hovered && {'-webkit-transition':  'box-shadow .6s ease-out'}),
+             ...(!hovered && {'box-shadow': '.8px .9px 6px rgba(0, 0, 0, 0)'}),
+             ...(!hovered && {'background-color': '#fff'}),
+
+
              ...(hovered && {'-webkit-transition':  'box-shadow .6s ease-out'}),
              ...(hovered && {'box-shadow': '.8px .9px 6px rgba(0, 0, 0, .25)'}),
+             ...(hovered && {'background-color': '#eef4ff'}),
            }}
            onClick={(globalConfig) => {
                   config.setAsync('detailsMode', false);
@@ -131,7 +141,7 @@ function Customer({record, config}) {
                     'text-transform': 'uppercase',
                     'color': 'rgba(38, 28, 106, 0.7)',
                     'font-size': '10px',
-                    'background-color':  '#a6c8ff',
+                    'background-color':  '#a6c8ff', 
                     ...(record.getCellValue("Customer Membership Rank").color === "blueBright" && {'background-color':  '#a6c8ff'}),
                     ...(record.getCellValue("Customer Membership Rank").color === "tealBright" && {'background-color':  '#9ef0f0'}),
                     ...(record.getCellValue("Customer Membership Rank").color === "purpleBright" && {'background-color':  '#d4bbff'}),
