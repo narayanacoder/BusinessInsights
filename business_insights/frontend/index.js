@@ -52,18 +52,29 @@ function Task({record}) {
     // );
 
     return (
-        <div class="card">
-  <h1>{record.name || 'Unnamed record'}</h1>
-  <p >{record.getCellValue('Phone')}</p>
-  <p>{record.getCellValue('Deal (from Deals)')}</p>
-  <TextButton
-                icon="expand"
-                aria-label="Expand record"
-                variant="dark"
-                onClick={() => {
-                    expandRecord(record);
-                }}
+        <div class="card"
+           style={{
+             'box-shadow': '4px 4px 4px 4px',
+             'transition': '0.3s',
+             'border-radius': '10px',
+             'padding': 12,
+           }}
+           onClick={() => {
+                 expandRecord(record);
+           }}
+           >
+             <h1>{record.name || 'Unnamed record'}</h1>
+             <p >{record.getCellValue('Phone')}</p>
+             <p>{record.getCellValue('Deal (from Deals)')}</p>
+                <TextButton
+                    icon="expand"
+                    aria-label="Expand record"
+                    variant="dark"
+                    onClick={() => {
+                     expandRecord(record);
+                    }}
             />
+
   {/* <p><button>Add to Cart</button></p> */}
 </div>
     );
