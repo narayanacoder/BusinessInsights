@@ -11,13 +11,16 @@ import {
     Button
 } from '@airtable/blocks/ui';
 
+
 import React, {useState} from 'react';
 
 function TodoBlock() {
     const globalConfig = useGlobalConfig();
     let detailsMode = globalConfig.get('detailsMode');
+    if(detailsMode === undefined) {
+        detailsMode = true;
+    }
     const recordId = globalConfig.get('recordId');
-
 
     const base = useBase();
 
@@ -25,7 +28,10 @@ function TodoBlock() {
     const tableId = globalConfig.get('selectedTableId');
     const table = base.getTableByIdIfExists(tableId);
     const records = useRecords(table);
-    var customerRecord = useRecordById(table, recordId);
+    var customerRecord;
+    if (recordId !== undefined) {
+        customerRecord = useRecordById(table, recordId);
+    }
 
     const customers = records ? records.map( (record, config)  => {
         return <Customer key={record.id} record={record}  config={globalConfig}/>;
@@ -36,10 +42,14 @@ function TodoBlock() {
     const rewardRecords = useRecords(rewardTable);
 
     var filteredRewardRecords = [];
+    console.log(customerRecord);
     for (const record of rewardRecords) {
-        if(record.getCellValue('Phone (from Customers)') == customerRecord.getCellValue('Phone')) {
-            filteredRewardRecords.push(record);
+        if (customerRecord !== undefined) {
+            if(record.getCellValue('Phone (from Customers)') == customerRecord.getCellValue('Phone')) {
+                filteredRewardRecords.push(record);
+            }
         }
+        
     }
 
     const transactions = filteredRewardRecords ? filteredRewardRecords.map( (record, config)  => {
