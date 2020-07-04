@@ -6,51 +6,48 @@ import {
     TextButton,
     TablePickerSynced,
     FieldPickerSynced,
-    useGlobalConfig
+    useGlobalConfig,
+    useRecordById
 } from '@airtable/blocks/ui';
 
 import React, {useState} from 'react';
 
+
 function TodoBlock() {
     const base = useBase();
+
     const globalConfig = useGlobalConfig();
     const tableId = globalConfig.get('selectedTableId');
+    let detailsMode = globalConfig.get('detailsMode');
+    //detailsMode = (detailsMode === null) ? false : true;
+    const recordId = globalConfig.get('recordId');
     const table = base.getTableByIdIfExists(tableId);
     const records = useRecords(table);
-    const tasks = records ? records.map(record => {
-        return <Task key={record.id} record={record} />;
+    console.log("LOG3 =", detailsMode);
+    const tasks = records ? records.map( (record, config)  => {
+        return <Task key={record.id} record={record}  config={globalConfig}/>;
     }) : null;
-    return  <div>
-                    <TablePickerSynced globalConfigKey="selectedTableId" />
+    var customerRecord = useRecordById(table, recordId);
+    if ( detailsMode === true) {
+       return  <div>
+           <TablePickerSynced globalConfigKey="selectedTableId" />
         {tasks}</div>;
+    } else {
+        return  <div>
+                  'Hello World'
+                   <h1> {customerRecord.name} </h1>
+                  <button
+                  onClick={() => {
+                       globalConfig.setAsync('detailsMode', true);
+                    }}
+                    >
+                    Back
+                  </button>
+                  </div>;
+    }
 }
 
-function Task({record}) {
-    // return (
-    //     <div
-    //     style={{
-    //         display: 'flex',
-    //         alignItems: 'center',
-    //         justifyContent: 'space-between',
-    //         fontSize: 18,
-    //         padding: 12,
-    //         borderBottom: '1px solid #ddd',
-    //     }}
-    // >
-    //         <p>{record.name || 'Unnamed record'}</p>
-    //         <p>({record.getCellValue('Phone')}
-    //         {record.getCellValue('Deal (from Deals)')})</p>
-    //         <TextButton
-    //             icon="expand"
-    //             aria-label="Expand record"
-    //             variant="dark"
-    //             onClick={() => {
-    //                 expandRecord(record);
-    //             }}
-    //         />
-    //     </div>
-    // );
-
+function Task({record, config}) {
     return (
         <div class="card"
            style={{
@@ -59,8 +56,9 @@ function Task({record}) {
              'border-radius': '10px',
              'padding': 12,
            }}
-           onClick={() => {
-                 expandRecord(record);
+           onClick={(globalConfig) => {
+                  config.setAsync('detailsMode', false);
+                  config.setAsync('recordId', record.id);
            }}
            >
              <h1>{record.name || 'Unnamed record'}</h1>
@@ -74,9 +72,7 @@ function Task({record}) {
                      expandRecord(record);
                     }}
             />
-
-  {/* <p><button>Add to Cart</button></p> */}
-</div>
+        </div>
     );
 }
 
