@@ -26,20 +26,37 @@ function TodoBlock() {
 }
 
 function Task({record}) {
+    // return (
+    //     <div
+    //     style={{
+    //         display: 'flex',
+    //         alignItems: 'center',
+    //         justifyContent: 'space-between',
+    //         fontSize: 18,
+    //         padding: 12,
+    //         borderBottom: '1px solid #ddd',
+    //     }}
+    // >
+    //         <p>{record.name || 'Unnamed record'}</p>
+    //         <p>({record.getCellValue('Phone')}
+    //         {record.getCellValue('Deal (from Deals)')})</p>
+    //         <TextButton
+    //             icon="expand"
+    //             aria-label="Expand record"
+    //             variant="dark"
+    //             onClick={() => {
+    //                 expandRecord(record);
+    //             }}
+    //         />
+    //     </div>
+    // );
+
     return (
-        <div
-        style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            fontSize: 18,
-            padding: 12,
-            borderBottom: '1px solid #ddd',
-        }}
-    >
-            
-            {record.name || 'Unnamed record'}
-            <TextButton
+        <div class="card">
+  <h1>{record.name || 'Unnamed record'}</h1>
+  <p >{record.getCellValue('Phone')}</p>
+  <p>{record.getCellValue('Deal (from Deals)')}</p>
+  <TextButton
                 icon="expand"
                 aria-label="Expand record"
                 variant="dark"
@@ -47,7 +64,8 @@ function Task({record}) {
                     expandRecord(record);
                 }}
             />
-        </div>
+  {/* <p><button>Add to Cart</button></p> */}
+</div>
     );
 }
 
