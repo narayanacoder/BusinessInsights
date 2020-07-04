@@ -7,7 +7,9 @@ import {
     TablePickerSynced,
     FieldPickerSynced,
     useGlobalConfig,
-    useRecordById
+    useRecordById,
+    useLoadable,
+    useWatchable
 } from '@airtable/blocks/ui';
 
 import React, {useState} from 'react';
@@ -23,6 +25,17 @@ function TodoBlock() {
     const recordId = globalConfig.get('recordId');
     const table = base.getTableByIdIfExists(tableId);
     const records = useRecords(table);
+
+
+
+     const rewardTable = base.getTableByName('Customer Reward Points');
+     const rewardRecords = useRecords(rewardTable);
+
+    for (const record of rewardRecords) {
+        console.log("Record =", record.Amount);
+
+    }
+
     console.log("LOG3 =", detailsMode);
     const tasks = records ? records.map( (record, config)  => {
         return <Task key={record.id} record={record}  config={globalConfig}/>;
