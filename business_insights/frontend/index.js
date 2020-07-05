@@ -279,7 +279,7 @@ function Transactions(linkedRecords) {
     return (
         <div>
         <Box marginY={3}>
-            <Heading>Recent Reward Points Acquired</Heading>
+            <h3>Recent Reward Points Acquired</h3>
             <table style={{borderCollapse: 'collapse', width: '100%'}}>
                 <thead>
                     <tr>
@@ -345,7 +345,7 @@ function ActiveDeals(linkedRecords) {
     return (
         <div>
         <Box marginY={3}>
-            <Heading>Current Deals</Heading>
+            <h3>Current Deals</h3>
             <table style={{borderCollapse: 'collapse', width: '100%'}}>
                 <thead>
                     <tr>
@@ -401,26 +401,26 @@ function RecommendationDeals(linkedRecords) {
     return (
         <div>
         <Box marginY={3}>
-            <Heading>Recommended New Deals</Heading>
+            <h3>Recommended New Deals</h3>
             <table style={{borderCollapse: 'collapse', width: '100%'}}>
                 <thead>
                     <tr>
-                    <td style={{width: '25%', verticalAlign: 'bottom'}}>
+                    <td style={{width: '40%', verticalAlign: 'bottom'}}>
                             <Heading variant="caps" size="xsmall" marginRight={3} marginBottom={0}>
                                 Deal
                             </Heading>
                         </td>
-                        <td style={{width: '25%', verticalAlign: 'bottom'}}>
+                        <td style={{width: '20%', verticalAlign: 'bottom'}}>
                             <Heading variant="caps" size="xsmall" marginRight={3} marginBottom={0}>
                                 Start Date
                             </Heading>
                         </td>
-                        <td style={{width: '25%', verticalAlign: 'bottom'}}>
+                        <td style={{width: '20%', verticalAlign: 'bottom'}}>
                             <Heading variant="caps" size="xsmall" marginRight={3} marginBottom={0}>
                                 End Date
                             </Heading>
                         </td>
-                        <td style={{width: '25%', verticalAlign: 'bottom'}}>
+                        <td style={{width: '20%', verticalAlign: 'bottom'}}>
                             <Heading variant="caps" size="xsmall" marginRight={3} marginBottom={0}>
                                 Notify
                             </Heading>
@@ -431,22 +431,22 @@ function RecommendationDeals(linkedRecords) {
                     {linkedRecords.map(linkedRecord => {
                         return (
                             <tr key={linkedRecord.id} style={{borderTop: '2px solid #ddd'}}>
-                                <td style={{width: '25%', padding: '8px'}}>
+                                <td style={{width: '40%', padding: '8px'}}>
                                         <Text marginRight={3}>
                                         {linkedRecord.getCellValue('Deal')}
                                     </Text>
                                 </td>
-                                <td style={{width: '25%', padding: '8px'}}>
+                                <td style={{width: '20%', padding: '8px'}}>
                                     <Text marginRight={3}>
                                     {linkedRecord.getCellValue('Start date')}
                                     </Text>
                                 </td>
-                                <td style={{width: '25%', padding: '8px'}}>
+                                <td style={{width: '20%', padding: '8px'}}>
                                     <Text marginRight={3}>
                                     {linkedRecord.getCellValue('Due date')}
                                     </Text>
                                 </td>
-                                <td style={{width: '25%', padding: '8px'}}>
+                                <td style={{width: '20%', padding: '8px'}}>
                                     <Text marginRight={3}>
                                     <button
                                     style={{
