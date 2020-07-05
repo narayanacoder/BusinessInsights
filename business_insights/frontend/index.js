@@ -98,7 +98,7 @@ function TodoBlock() {
 
     if ( detailsMode === true) {
        return  <div>
-           <h1 style={{'margin':'12px'}}> My Customers </h1>
+           <h1 style={{'margin':'12px'}}> Customers </h1>
         {customers}</div>;
     } else {
         return  <div style={{'margin':'12px'}}>
