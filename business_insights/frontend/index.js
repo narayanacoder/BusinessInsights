@@ -174,7 +174,7 @@ function Customer({record, config}) {
                   config.setAsync('recordId', record.id);
            }}
            >
-             <span style={{'float':'right', 'margin-right':'20px', 'display':' inline-flex', 'align-items': 'center', 'font-weight': '500', 'color': '#4669db'}}>{record.getCellValue("Reward points") + " points"}{badge}</span>
+             <span style={{'float':'right', 'margin-right':'20px', 'margin-top': '5px', 'display':' inline-flex', 'align-items': 'center', 'font-weight': '500', 'color': '#4669db'}}>{record.getCellValue("Reward points") + " points"}{badge}</span>
              <h1>{record.name || 'Unnamed record'}</h1>
              <span
                 style={{ 'fontFamily' : '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif',
