@@ -76,6 +76,23 @@ function TodoBlock() {
 
     const activedeals = filteredDealRecords ? ActiveDeals(filteredDealRecords) : null;
 
+       // Retrieve deals table records
+       const recommendationsTable = base.getTableByName('Deals Recommendations');
+       const recommendationRecords = useRecords(recommendationsTable);
+   
+       var filteredRecommendationlRecords = [];
+       console.log(customerRecord);
+       for (const record of recommendationRecords) {
+           if (customerRecord !== undefined && customerRecord !== null) {
+               console.log()
+               if(record.getCellValueAsString('Customers').includes(customerRecord.getCellValueAsString('CustomerName'))) {
+                filteredRecommendationlRecords.push(record);
+               }
+           }
+       }
+   
+       const recommendationdeals = filteredRecommendationlRecords ? RecommendationDeals(filteredRecommendationlRecords) : null;
+
     const backIcon = <svg focusable="false" style={{'margin-right':'8px'}} preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><path d="M13 26L14.41 24.59 6.83 17 29 17 29 15 6.83 15 14.41 7.41 13 6 3 16 13 26z"></path><title>Arrow left</title></svg>
     const badge = <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="#fcb400" width="32" height="24" viewBox="0 0 32 32" aria-hidden="true"><path d="M23 2L24.593 5 28 5.414 25.5 7.667 26 11 23 9.125 20 11 20.5 7.667 18 5.414 21.5 5 23 2z"></path><path d="M22.7168,13.249l-1.9375-.498A6.9942,6.9942,0,1,1,15.7505,4.22l.499-1.9365A8.99,8.99,0,0,0,8,17.689V30l6-4,6,4V17.7078A8.9627,8.9627,0,0,0,22.7168,13.249ZM18,26.2627l-4-2.6665-4,2.6665V19.05a8.9238,8.9238,0,0,0,8,.0062Z"></path><title>Badge</title></svg>
 
@@ -146,7 +163,9 @@ function TodoBlock() {
                                 </span>
                             </div>
                             {transactions}
+                            {recommendationdeals}
                             {activedeals}
+
 
 
                         </div>
@@ -249,8 +268,7 @@ function Customer({record, config}) {
 
 
 
-// Renders a single record from the Collections table with each
-// of its linked Artists records.
+// Renders a table
 function Transactions(linkedRecords) {
 
     return (
@@ -260,24 +278,24 @@ function Transactions(linkedRecords) {
             <table style={{borderCollapse: 'collapse', width: '100%'}}>
                 <thead>
                     <tr>
-                        <td
-                            style={{
-                                whiteSpace: 'nowrap',
-                                verticalAlign: 'bottom',
-                            }}
-                        >
+                    <td style={{width: '25%', verticalAlign: 'bottom'}}>
                             <Heading variant="caps" size="xsmall" marginRight={3} marginBottom={0}>
-                                Transaction Date
+                                Transaction date
                             </Heading>
                         </td>
-                        <td style={{width: '50%', verticalAlign: 'bottom'}}>
+                        <td style={{width: '25%', verticalAlign: 'bottom'}}>
                             <Heading variant="caps" size="xsmall" marginRight={3} marginBottom={0}>
                                 Amount
                             </Heading>
                         </td>
-                        <td style={{width: '50%', verticalAlign: 'bottom'}}>
-                            <Heading variant="caps" size="xsmall" marginBottom={0}>
+                        <td style={{width: '25%', verticalAlign: 'bottom'}}>
+                           <Heading variant="caps" size="xsmall" marginRight={3} marginBottom={0}>
                                 Reward Points
+                            </Heading>
+                        </td>
+                        <td style={{width: '25%', verticalAlign: 'bottom'}}>
+                           <Heading variant="caps" size="xsmall" marginRight={3} marginBottom={0}>
+                                Business Location
                             </Heading>
                         </td>
                     </tr>
@@ -286,18 +304,25 @@ function Transactions(linkedRecords) {
                     {linkedRecords.map(linkedRecord => {
                         return (
                             <tr key={linkedRecord.id} style={{borderTop: '2px solid #ddd'}}>
-                                <td style={{width: '50%'}}>
+                                <td style={{width: '25%'}}>
                                         <Text marginRight={3}>
                                         {linkedRecord.getCellValue('TransactionDate')}
                                     </Text>
                                 </td>
-                                <td style={{width: '50%'}}>
+                                <td style={{width: '25%'}}>
                                     <Text marginRight={3}>
                                     {linkedRecord.getCellValue('Amount')}
                                     </Text>
                                 </td>
-                                <td style={{width: '50%'}}>
-                                {linkedRecord.getCellValue('RewardPoints')}
+                                <td style={{width: '25%'}}>
+                                <Text marginRight={3}>
+                                    {linkedRecord.getCellValue('RewardPoints')}
+                                    </Text>
+                                </td>
+                                <td style={{width: '25%'}}>
+                                <Text marginRight={3}>
+                                    {linkedRecord.getCellValue('Location (from Business Branches)')}
+                                    </Text>
                                 </td>
                             </tr>
                         );
@@ -309,8 +334,7 @@ function Transactions(linkedRecords) {
     );
 }
 
-// Renders a single record from the Collections table with each
-// of its linked Artists records.
+// Renders a table
 function ActiveDeals(linkedRecords) {
 
     return (
@@ -365,5 +389,62 @@ function ActiveDeals(linkedRecords) {
         </div>
     );
 }
+
+// Renders a table
+function RecommendationDeals(linkedRecords) {
+
+    return (
+        <div>
+        <Box marginY={3}>
+            <Heading>Recommended Deals</Heading>
+            <table style={{borderCollapse: 'collapse', width: '100%'}}>
+                <thead>
+                    <tr>
+                    <td style={{width: '50%', verticalAlign: 'bottom'}}>
+                            <Heading variant="caps" size="xsmall" marginRight={3} marginBottom={0}>
+                                Deal
+                            </Heading>
+                        </td>
+                        <td style={{width: '25%', verticalAlign: 'bottom'}}>
+                            <Heading variant="caps" size="xsmall" marginRight={3} marginBottom={0}>
+                                Start Date
+                            </Heading>
+                        </td>
+                        <td style={{width: '25%', verticalAlign: 'bottom'}}>
+                            <Heading variant="caps" size="xsmall" marginRight={3} marginBottom={0}>
+                                End Date
+                            </Heading>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {linkedRecords.map(linkedRecord => {
+                        return (
+                            <tr key={linkedRecord.id} style={{borderTop: '2px solid #ddd'}}>
+                                <td style={{width: '50%'}}>
+                                        <Text marginRight={3}>
+                                        {linkedRecord.getCellValue('Deal')}
+                                    </Text>
+                                </td>
+                                <td style={{width: '50%'}}>
+                                    <Text marginRight={3}>
+                                    {linkedRecord.getCellValue('Start date')}
+                                    </Text>
+                                </td>
+                                <td style={{width: '50%'}}>
+                                    <Text marginRight={3}>
+                                    {linkedRecord.getCellValue('Due date')}
+                                    </Text>
+                                </td>
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
+        </Box>
+        </div>
+    );
+}
+
 
 initializeBlock(() => <TodoBlock />);
