@@ -32,7 +32,7 @@ function TodoBlock() {
 
     // Retrieve Selected table 
     const tableId = globalConfig.get('selectedTableId');
-    const table = base.getTableByIdIfExists(tableId);
+    const table = base.getTableByName('Customers');
     const records = useRecords(table);
     var customerRecord;
     if (recordId !== undefined && recordId !== null) {
@@ -98,7 +98,7 @@ function TodoBlock() {
 
     if ( detailsMode === true) {
        return  <div>
-           <TablePickerSynced globalConfigKey="selectedTableId" />
+           <h1 style={{'margin':'12px'}}> My Customers </h1>
         {customers}</div>;
     } else {
         return  <div style={{'margin':'12px'}}>
@@ -122,6 +122,7 @@ function TodoBlock() {
                             >
 
                             <span style={{'float':'right', 'margin-right':'20px', 'display':' inline-flex', 'align-items': 'center', 'font-weight': '500', 'color': '#4669db', 'margin-top':'5px'}}>{customerRecord.getCellValue("Reward points") + " points"}{badge}</span>
+
                             <button
                                 style={{
                                     'fontFamily' : '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif',
@@ -162,9 +163,13 @@ function TodoBlock() {
                                     {customerRecord.getCellValue("Customer Membership Rank").name}
                                 </span>
                             </div>
+                            
                             {transactions}
                             {recommendationdeals}
                             {activedeals}
+                            <div id="snackbar" className=""
+                                    style={{visibility:"hidden", float:  "right", paddingBottom: "25px",
+                                     color: "green", 'font-size': '16px'}}>Sent deal to customer..</div>
 
 
 
@@ -248,7 +253,7 @@ function Customer({record, config}) {
                     </button> */}
             <div style={{'margin-top':"22px"}}/>
             <p style={{'margin-bottom': '0px', 'font-size': '0.9rem'}}> {record.getCellValue('Phone')} </p>
-            <p style={{'margin-top': '8px', 'font-size': '0.9rem'}}> {record.getCellValueAsString('Deal (from Deals)')} </p> 
+            <p style={{'margin-top': '8px', 'font-size': '0.9rem'}}> {record.getCellValueAsString('Email')} </p> 
              {/* <TextButton
                     icon="expand"
                     aria-label="Expand record"
@@ -304,22 +309,22 @@ function Transactions(linkedRecords) {
                     {linkedRecords.map(linkedRecord => {
                         return (
                             <tr key={linkedRecord.id} style={{borderTop: '2px solid #ddd'}}>
-                                <td style={{width: '25%'}}>
+                                <td style={{width: '25%', padding: '8px'}}>
                                         <Text marginRight={3}>
                                         {linkedRecord.getCellValue('TransactionDate')}
                                     </Text>
                                 </td>
-                                <td style={{width: '25%'}}>
+                                <td style={{width: '25%', padding: '8px'}}>
                                     <Text marginRight={3}>
                                     {linkedRecord.getCellValue('Amount')}
                                     </Text>
                                 </td>
-                                <td style={{width: '25%'}}>
+                                <td style={{width: '25%', padding: '8px'}}>
                                 <Text marginRight={3}>
                                     {linkedRecord.getCellValue('RewardPoints')}
                                     </Text>
                                 </td>
-                                <td style={{width: '25%'}}>
+                                <td style={{width: '25%', padding: '8px'}}>
                                 <Text marginRight={3}>
                                     {linkedRecord.getCellValue('Location (from Business Branches)')}
                                     </Text>
@@ -340,21 +345,21 @@ function ActiveDeals(linkedRecords) {
     return (
         <div>
         <Box marginY={3}>
-            <Heading>Active Deals</Heading>
+            <Heading>Current Deals</Heading>
             <table style={{borderCollapse: 'collapse', width: '100%'}}>
                 <thead>
                     <tr>
-                    <td style={{width: '50%', verticalAlign: 'bottom'}}>
+                    <td style={{width: '33%', verticalAlign: 'bottom'}}>
                             <Heading variant="caps" size="xsmall" marginRight={3} marginBottom={0}>
                                 Deal
                             </Heading>
                         </td>
-                        <td style={{width: '25%', verticalAlign: 'bottom'}}>
+                        <td style={{width: '33%', verticalAlign: 'bottom'}}>
                             <Heading variant="caps" size="xsmall" marginRight={3} marginBottom={0}>
                                 Start Date
                             </Heading>
                         </td>
-                        <td style={{width: '25%', verticalAlign: 'bottom'}}>
+                        <td style={{width: '33%', verticalAlign: 'bottom'}}>
                             <Heading variant="caps" size="xsmall" marginRight={3} marginBottom={0}>
                                 End Date
                             </Heading>
@@ -365,17 +370,17 @@ function ActiveDeals(linkedRecords) {
                     {linkedRecords.map(linkedRecord => {
                         return (
                             <tr key={linkedRecord.id} style={{borderTop: '2px solid #ddd'}}>
-                                <td style={{width: '50%'}}>
+                                <td style={{width: '33%', padding: '8px'}}>
                                         <Text marginRight={3}>
                                         {linkedRecord.getCellValue('Deal')}
                                     </Text>
                                 </td>
-                                <td style={{width: '50%'}}>
+                                <td style={{width: '33%', padding: '8px'}}>
                                     <Text marginRight={3}>
                                     {linkedRecord.getCellValue('Start date')}
                                     </Text>
                                 </td>
-                                <td style={{width: '50%'}}>
+                                <td style={{width: '33%', padding: '8px'}}>
                                     <Text marginRight={3}>
                                     {linkedRecord.getCellValue('Due date')}
                                     </Text>
@@ -396,11 +401,11 @@ function RecommendationDeals(linkedRecords) {
     return (
         <div>
         <Box marginY={3}>
-            <Heading>Recommended Deals</Heading>
+            <Heading>Recommended New Deals</Heading>
             <table style={{borderCollapse: 'collapse', width: '100%'}}>
                 <thead>
                     <tr>
-                    <td style={{width: '50%', verticalAlign: 'bottom'}}>
+                    <td style={{width: '25%', verticalAlign: 'bottom'}}>
                             <Heading variant="caps" size="xsmall" marginRight={3} marginBottom={0}>
                                 Deal
                             </Heading>
@@ -415,25 +420,54 @@ function RecommendationDeals(linkedRecords) {
                                 End Date
                             </Heading>
                         </td>
+                        <td style={{width: '25%', verticalAlign: 'bottom'}}>
+                            <Heading variant="caps" size="xsmall" marginRight={3} marginBottom={0}>
+                                Notify
+                            </Heading>
+                        </td>
                     </tr>
                 </thead>
                 <tbody>
                     {linkedRecords.map(linkedRecord => {
                         return (
                             <tr key={linkedRecord.id} style={{borderTop: '2px solid #ddd'}}>
-                                <td style={{width: '50%'}}>
+                                <td style={{width: '25%', padding: '8px'}}>
                                         <Text marginRight={3}>
                                         {linkedRecord.getCellValue('Deal')}
                                     </Text>
                                 </td>
-                                <td style={{width: '50%'}}>
+                                <td style={{width: '25%', padding: '8px'}}>
                                     <Text marginRight={3}>
                                     {linkedRecord.getCellValue('Start date')}
                                     </Text>
                                 </td>
-                                <td style={{width: '50%'}}>
+                                <td style={{width: '25%', padding: '8px'}}>
                                     <Text marginRight={3}>
                                     {linkedRecord.getCellValue('Due date')}
+                                    </Text>
+                                </td>
+                                <td style={{width: '25%', padding: '8px'}}>
+                                    <Text marginRight={3}>
+                                    <button
+                                    style={{
+                                    'margin-right': '20px',
+                                    'margin-top': '8px',
+                                    'background-color': '#0062ff',
+                                    'border': 'none',
+                                    'color': 'white',
+                                    'padding': '4px 4px 4px 4px',
+                                    'text-align': 'center',
+                                    'text-decoration': 'none',
+                                    'display': 'inline-block',
+                                    'font-size': '8px',
+                                    'border-radius': '10rem',
+                                    'cursor': 'pointer'}}
+                                    onClick={() => {
+                                        sendNotification();
+                                    }}
+                                    >
+                                    Send SMS
+                                    </button>
                                     </Text>
                                 </td>
                             </tr>
@@ -446,5 +480,10 @@ function RecommendationDeals(linkedRecords) {
     );
 }
 
+function sendNotification() {
+    var x = document.getElementById("snackbar");
+    x.style.visibility = "visible";
+    setTimeout(function(){ x.style.visibility = "hidden";; }, 2000);
+  }
 
 initializeBlock(() => <TodoBlock />);
