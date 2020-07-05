@@ -35,7 +35,7 @@ function HelloWorldBlock() {
     }
     loadCSSFromString('body { background-color: #f2f4f8; }');
     return  <>
-                <div style={{'margin-top':'8px', 'margin-left':'20px', 'align-items': 'center', 'font-weight': '500', 'color': '#4669db', 'font-size': '22px'}}>Browse local business branches</div>
+                <div style={{'margin-top':'8px', 'text-align':'center', 'align-items': 'center', 'font-weight': '500', 'color': '#4669db', 'font-size': '22px'}}>Browse local business branches</div>
                 <Carousel images={filteredImages} records={filteredRecords}/>    
             </>;
 }
