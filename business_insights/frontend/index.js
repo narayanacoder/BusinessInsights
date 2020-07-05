@@ -191,7 +191,7 @@ function Customer({record, config}) {
                 }}> 
                 {record.getCellValue("Customer Membership Rank").name}
              </span>
-                    <button
+                    {/* <button
                         style={{'float': 'right',
                             'margin-right': '20px',
                             'margin-top': '8px',
@@ -209,7 +209,7 @@ function Customer({record, config}) {
                         }}
                     >
                     View 
-                    </button>
+                    </button> */}
             <div style={{'margin-top':"22px"}}/>
             <p style={{'margin-bottom': '0px', 'font-size': '0.9rem'}}> {record.getCellValue('Phone')} </p>
             <p style={{'margin-top': '8px', 'font-size': '0.9rem'}}> {record.getCellValueAsString('Deal (from Deals)')} </p> 
