@@ -60,39 +60,81 @@ function TodoBlock() {
     }) : null;
 
     const backIcon = <svg focusable="false" style={{'margin-right':'8px'}} preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><path d="M13 26L14.41 24.59 6.83 17 29 17 29 15 6.83 15 14.41 7.41 13 6 3 16 13 26z"></path><title>Arrow left</title></svg>
+    const badge = <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="#fcb400" width="32" height="24" viewBox="0 0 32 32" aria-hidden="true"><path d="M23 2L24.593 5 28 5.414 25.5 7.667 26 11 23 9.125 20 11 20.5 7.667 18 5.414 21.5 5 23 2z"></path><path d="M22.7168,13.249l-1.9375-.498A6.9942,6.9942,0,1,1,15.7505,4.22l.499-1.9365A8.99,8.99,0,0,0,8,17.689V30l6-4,6,4V17.7078A8.9627,8.9627,0,0,0,22.7168,13.249ZM18,26.2627l-4-2.6665-4,2.6665V19.05a8.9238,8.9238,0,0,0,8,.0062Z"></path><title>Badge</title></svg>
 
     if ( detailsMode === true) {
        return  <div>
            <TablePickerSynced globalConfigKey="selectedTableId" />
         {customers}</div>;
     } else {
-        return  <div style={{'margin':'32px'}}>
-                    <button
-                        style={{'float': 'right',
-                            'fontFamily' : '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif',
-                            'background-color': 'transparent',
-                            'border': 'none',
-                            'color': '#4669db',
-                            'padding': '15px 32px',
-                            'text-align': 'center',
-                            'text-decoration': 'none',
-                            'display': 'inline-block',
-                            'font-size': '16px',
-                            'cursor': 'pointer'}}
-                        onClick={() => {
-                            globalConfig.setAsync('detailsMode', true);
-                        }}
-                    >
-                        <div style={{'display':' inline-flex', 'align-items': 'center'}}>
-                            {backIcon}
-                            Back 
-                        </div>
-                    </button>
-                   <h1> {customerRecord.getCellValue('CustomerName')} </h1>
-                   <h2>Recent Transactions</h2>
-                   <h2>Date Amount Reward Points</h2>
+        return  <div style={{'margin':'12px'}}>
 
-                  {transactions}
+                    <div class="card"
+                            style={{
+                                'transition': 'all 0.4s ease-out',
+                                'border-radius': '4px',
+                                'padding': '20px',
+                                'marginTop': '40px',
+                                'marginBottom': '10px',
+                                'marginLeft' : '20px',
+                                'marginRight' : '20px',
+                                'fontFamily' : '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif',
+                                'color' : '#171717',
+                                'border': '1px solid rgba(0,0,0,.125)',
+                                '-webkit-transition':  'box-shadow .6s ease-out',
+                                'box-shadow': '.8px .9px 6px rgba(0, 0, 0, .15)',
+                                'background-color': '#fff'
+                            }}
+                            >
+
+                            <span style={{'float':'right', 'margin-right':'20px', 'display':' inline-flex', 'align-items': 'center', 'font-weight': '500', 'color': '#4669db', 'margin-top':'5px'}}>{customerRecord.getCellValue("Reward points") + " points"}{badge}</span>
+                            <button
+                                style={{
+                                    'fontFamily' : '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif',
+                                    'background-color': 'transparent',
+                                    'border': 'none',
+                                    'color': '#4669db',
+                                    'text-align': 'center',
+                                    'text-decoration': 'none',
+                                    'display': 'inline-block',
+                                    'font-size': '16px',
+                                    'padding': '0px',
+                                    'cursor': 'pointer'}}
+                                onClick={() => {
+                                    globalConfig.setAsync('detailsMode', true);
+                                }}
+                            >
+                                <div style={{'display':' inline-flex', 'align-items': 'center'}}>
+                                    {backIcon}
+                                    Back 
+                                </div>
+                            </button>
+                            <h1> {customerRecord.getCellValue('CustomerName')} </h1>
+                            <div style={{'margin-bottom': '32px'}}>
+                                <span
+                                    style={{ 'fontFamily' : '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif',
+                                        'font-weight': '700',
+                                        'letter-spacing': '1.5px',
+                                        'text-transform': 'uppercase',
+                                        'color': 'rgba(38, 28, 106, 0.7)',
+                                        'font-size': '10px',
+                                        'background-color':  '#a6c8ff', 
+                                        ...(customerRecord.getCellValue("Customer Membership Rank").color === "blueBright" && {'background-color':  '#a6c8ff'}),
+                                        ...(customerRecord.getCellValue("Customer Membership Rank").color === "tealBright" && {'background-color':  '#9ef0f0'}),
+                                        ...(customerRecord.getCellValue("Customer Membership Rank").color === "purpleBright" && {'background-color':  '#d4bbff'}),
+                                        'padding': '5px 10px',
+                                        'border-radius': '10rem'                                        
+                                    }}> 
+                                    {customerRecord.getCellValue("Customer Membership Rank").name}
+                                </span>
+                            </div>
+                            <h2>Recent Transactions</h2>
+                            <h2>Date Amount Reward Points</h2>
+
+                            {transactions}
+
+                        </div>
+
                   </div>;
     }
 }
