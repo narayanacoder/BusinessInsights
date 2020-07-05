@@ -20,7 +20,7 @@ function TodoBlock() {
 
     const globalConfig = useGlobalConfig();
     let detailsMode = globalConfig.get('detailsMode');
-    if(detailsMode === undefined) {
+    if(detailsMode === undefined || detailsMode === null) {
         detailsMode = true;
     }
     const recordId = globalConfig.get('recordId');
@@ -32,7 +32,7 @@ function TodoBlock() {
     const table = base.getTableByIdIfExists(tableId);
     const records = useRecords(table);
     var customerRecord;
-    if (recordId !== undefined) {
+    if (recordId !== undefined && recordId !== null) {
         customerRecord = useRecordById(table, recordId);
     }
 
@@ -47,7 +47,7 @@ function TodoBlock() {
     var filteredRewardRecords = [];
     console.log(customerRecord);
     for (const record of rewardRecords) {
-        if (customerRecord !== undefined) {
+        if (customerRecord !== undefined && customerRecord !== null) {
             if(record.getCellValue('Phone (from Customers)') == customerRecord.getCellValue('Phone')) {
                 filteredRewardRecords.push(record);
             }
