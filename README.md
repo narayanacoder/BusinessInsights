@@ -40,6 +40,7 @@ Airtable and React
 
 <div align="center">
 <a href="https://www.youtube.com/watch?v=SlPbxJK5jFE&feature=emb_title">View Demo</a>
+ </div>
 
 ## Business Insights Preview
 
