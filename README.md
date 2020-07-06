@@ -37,3 +37,48 @@ Airtable and React
 4. cd to inventory_stock_health and type block run
 5. cd to business_branches_carousel and type block run
 6. copy the local path(ex https://localhost:9000) of each block and run in Airtable dashboard(Edit block)
+
+## Business Insights
+
+### Customer list
+<p>
+<img src="demos/Customer list.png" width="280">
+</p>
+
+### Customer details
+<p>
+<img src="demos/Customer details.png" width="280">
+</p>
+
+### Invetory list
+<p>
+<img src="demos/Inventory list.png" width="280">
+</p>
+
+###  Invetory details
+<p>
+<img src="demos/Inventory details.png" width="280">
+</p>
+
+### Custom-block
+<p>
+<img src="demos/Customblocks.png" width="280">
+</p>
+
+### Standard blocks
+<p>
+<img src="demos/Standard blocks.png" width="280">
+</p>
+
+
+### Monitor Inventory Asse list
+<p>
+<img src="demos/MonitorInventoryAsset.png" width="280">
+</p>
+
+
+### Browse branches
+<p>
+<img src="demos/Browse branches.png" width="280">
+</p>
+
