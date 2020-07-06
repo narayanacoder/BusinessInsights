@@ -28,7 +28,7 @@ We are able to use custom blocks beta version to create an insightful dashboard 
 ## What we learned
 Airtable API hooks and React
 
-## What's next for Grow Local
+## What's next for Business Insights
 Integrating Blockchain as a rewards platform Integrating machine learning to build a deal recommendation engine specific to the customer.
 
 ## Built With
