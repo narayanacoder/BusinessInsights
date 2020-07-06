@@ -2,6 +2,10 @@
 Our idea is to create a dashboard that empowers business owners with valuable insights from transactional data.
 We plan to issue reward points using blockchain and receive targetted deal recommendations using machine learning
 
+<div align="center">
+<a href="https://www.youtube.com/watch?v=SlPbxJK5jFE&feature=emb_title">View Demo</a>
+ </div>
+
 ## Inspiration
 Customers love to avail discounts and deals. Business owners are constantly trying to increase sales by offering attractive deals. They wish to find trends in sales and suggestions of targeted deal recommendations for their loyal customers.
 
@@ -38,13 +42,17 @@ Airtable and React
 5. cd to business_branches_carousel and type block run
 6. copy the local path(ex https://localhost:9000) of each block and run in Airtable dashboard(Edit block)
 
-<div align="center">
-<a href="https://www.youtube.com/watch?v=SlPbxJK5jFE&feature=emb_title">View Demo</a>
- </div>
+
 
 ## Business Insights Preview
 
-### Customer dashboard
+### Custom blocks
+<p>
+ &nbsp;&nbsp;&nbsp;&nbsp;
+<img src="demos/Customblocks.png" width="280">
+</p>
+
+#### Customer dashboard
 <p>
  &nbsp;&nbsp;&nbsp;&nbsp;
 <img src="demos/Customer list.png" width="280">
@@ -52,7 +60,7 @@ Airtable and React
  <img src="demos/Customer details.png" width="280">
 </p>
 
-### Invetory dashboard
+#### Inventory dashboard
 <p>
  &nbsp;&nbsp;&nbsp;&nbsp;
 <img src="demos/Inventory list.png" width="280">
@@ -60,11 +68,18 @@ Airtable and React
 <img src="demos/Inventory details.png" width="280">
 </p>
 
-### Custom-block
+#### Monitor Inventory Asset list
 <p>
  &nbsp;&nbsp;&nbsp;&nbsp;
-<img src="demos/Customblocks.png" width="280">
+<img src="demos/MonitorInventoryAsset.png" width="280">
 </p>
+
+#### Browse branches
+<p>
+ &nbsp;&nbsp;&nbsp;&nbsp; 
+<img src="demos/Browse branches.png" width="280">
+</p>
+
 
 ### Standard blocks
 <p>
@@ -72,16 +87,6 @@ Airtable and React
 <img src="demos/Standard blocks.png" width="280">
 </p>
 
-### Monitor Inventory Asse list
-<p>
- &nbsp;&nbsp;&nbsp;&nbsp;
-<img src="demos/MonitorInventoryAsset.png" width="280">
-</p>
 
-### Browse branches
-<p>
- &nbsp;&nbsp;&nbsp;&nbsp; 
-<img src="demos/Browse branches.png" width="280">
-</p>
 
 
