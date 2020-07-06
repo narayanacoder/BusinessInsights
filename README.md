@@ -38,49 +38,45 @@ Airtable and React
 5. cd to business_branches_carousel and type block run
 6. copy the local path(ex https://localhost:9000) of each block and run in Airtable dashboard(Edit block)
 
-## Business Insights
+<div align="center">
+<a href="https://www.youtube.com/watch?v=SlPbxJK5jFE&feature=emb_title">View Demo</a>
 
-### Customer list
+## Business Insights Preview
+
+### Customer dashboard
 <p>
+ &nbsp;&nbsp;&nbsp;&nbsp;
 <img src="demos/Customer list.png" width="280">
+ &nbsp;&nbsp;
+ <img src="demos/Customer details.png" width="280">
 </p>
 
-### Customer details
+### Invetory dashboard
 <p>
-<img src="demos/Customer details.png" width="280">
-</p>
-
-### Invetory list
-<p>
+ &nbsp;&nbsp;&nbsp;&nbsp;
 <img src="demos/Inventory list.png" width="280">
-</p>
-
-###  Invetory details
-<p>
+ &nbsp;&nbsp;
 <img src="demos/Inventory details.png" width="280">
 </p>
 
 ### Custom-block
 <p>
-<img src="demos/Customblocks.png" width="280">
+ <img src="demos/Customblocks.png" width="280">
 </p>
 
 ### Standard blocks
 <p>
-<img src="demos/Standard blocks.png" width="280">
+ <img src="demos/Standard blocks.png" width="280">
 </p>
-
 
 ### Monitor Inventory Asse list
 <p>
-<img src="demos/MonitorInventoryAsset.png" width="280">
+ <img src="demos/MonitorInventoryAsset.png" width="280">
 </p>
-
 
 ### Browse branches
 <p>
-<img src="demos/Browse branches.png" width="280">
+ <img src="demos/Browse branches.png" width="280">
 </p>
 
-<div align="center">
-<a href="https://www.youtube.com/watch?v=SlPbxJK5jFE&feature=emb_title">View Demo</a>
+
