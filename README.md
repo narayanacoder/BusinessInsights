@@ -1,8 +1,11 @@
-# BusinessInsights
-Our idea is to connect customers with local businesses using reward points through a blockchain and targetted deal recommendations through machine learning
+# Business Insights
+Our idea is to create a dashboard that empowers business owners with valuable insights from transactional data.
+We plan to issue reward points using blockchain and receive targetted deal recommendations using machine learning
 
 ## Inspiration
-COVID 19 has impacted a lot of small and local businesses. We need to support our local businesses by shopping at local businesses such as small retails stores, family owned restaurants and other businesses.
+Customers love to avail discounts and deals. Business owners are constantly trying to increase sales by offering attractive deals. They wish to find trends in sales and suggestions of targeted deal recommendations for their loyal customers.
+
+What is needed is a dashboard that empowers business owners with valuable insights from transactional data
 
 ## What it does
 Our Air table dashboard helps business owner to visualise insights, sales and customer adoption trends, and promote contextual deals to customers based on their past transactions.
@@ -13,8 +16,7 @@ Created Custom Blocks Customers - A custom block for viewing reward points of cu
 Standard Blocks Sales trends(daily/weekly) - Amount of sales by day and week. Most popular deals - Popularity of deals Active deals - Number of deals Total customer rewards - Total reward points issued in a period Average weekly spend - Average weekly spend per customer.
 
 ## Challenges we ran into
-Thinking of what data can bring the most value needed a lot of brainstorming and design thinking.
-Communicating between 
+There was a learning curve initially for Air Table. But the documentation is awesome, so did not take much time after that to sort things
 
 ## Accomplishments that we're proud of
 We are able to use custom blocks beta version to create an insightful dashboard that can help business owners improve sales, plan promotions and increase customer adoption.
@@ -33,4 +35,5 @@ Airtable and React
 2. cd to business_insights and type block run
 3. cd to inventory_visualisation and type block run
 4. cd to inventory_stock_health and type block run
-5. copy the local path(ex https://localhost:9000) of each block and run in Airtable dashboard(Edit block)
+5. cd to business_branches_carousel and type block run
+6. copy the local path(ex https://localhost:9000) of each block and run in Airtable dashboard(Edit block)
