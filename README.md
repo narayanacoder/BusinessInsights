@@ -62,22 +62,26 @@ Airtable and React
 
 ### Custom-block
 <p>
- <img src="demos/Customblocks.png" width="280">
+ &nbsp;&nbsp;&nbsp;&nbsp;
+<img src="demos/Customblocks.png" width="280">
 </p>
 
 ### Standard blocks
 <p>
- <img src="demos/Standard blocks.png" width="280">
+ &nbsp;&nbsp;&nbsp;&nbsp;
+<img src="demos/Standard blocks.png" width="280">
 </p>
 
 ### Monitor Inventory Asse list
 <p>
- <img src="demos/MonitorInventoryAsset.png" width="280">
+ &nbsp;&nbsp;&nbsp;&nbsp;
+<img src="demos/MonitorInventoryAsset.png" width="280">
 </p>
 
 ### Browse branches
 <p>
- <img src="demos/Browse branches.png" width="280">
+ &nbsp;&nbsp;&nbsp;&nbsp; 
+<img src="demos/Browse branches.png" width="280">
 </p>
 
 
